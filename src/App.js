@@ -1,24 +1,35 @@
-import logo from './logo.svg';
+
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import Header from './components/Header.js';
+import Auth from './components/Auth.js';
+import UserHistory from './components/UserHistory.js';
+import UserHome from './components/UserHome.js';
+
+import React from 'react';
+import { useSelector } from 'react-redux';
+
+
 
 function App() {
+  const isLoggedIn = useSelector((state) => state.isLoggedIn)
+  console.log(isLoggedIn);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+
+   <header>
+    <Header/>
+   </header>
+   <main>
+    <Routes>
+   
+      <Route path="/auth" element={<Auth/>}/>
+      <Route path="/userHistory" element={<UserHistory/>}/>
+      <Route path="/userHome" element={<UserHome/>}/>
+
+    </Routes>
+   </main>
+    </React.Fragment>
   );
 }
 
