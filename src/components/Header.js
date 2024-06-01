@@ -6,7 +6,8 @@ import { authActions } from '../store'
 const Header = () => {
   const dispatch=useDispatch()
     const [value,setValue]=useState()
-    const isLoggedIn = useSelector((state) => state.isLoggedIn)
+    const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
+   
 
     return (
       <AppBar position="sticky" sx={{background:"linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(42,63,82,1) 25%, rgba(0,212,255,1) 100%);"}}>
@@ -21,9 +22,10 @@ const Header = () => {
                 </Tabs>
             </Box>}
             <Box display="flex" marginLeft="auto">
-             {!isLoggedIn  && <><Button variant="contained" sx={{margin:1, borderRadius:"10"}} LinkComponent={Link} to="Auth" color="warning">Login</Button>
-                <Button variant="contained" sx={{margin:1, borderRadius:"10"}} LinkComponent={Link} to="Auth" color="warning">Signup </Button></>}
-{    isLoggedIn &&     <Button onClick={()=>dispatch(authActions.logout)} variant="contained" sx={{margin:1, borderRadius:"10"}} LinkComponent={Link} to="Auth" color="warning">Logout </Button>}        
+             {!isLoggedIn  && <><Button variant="contained" sx={{margin:1, borderRadius:"10"}} LinkComponent={Link} to="Auth" color="warning">Join us</Button>
+                {/* <Button variant="contained" sx={{margin:1, borderRadius:"10"}} LinkComponent={Link} to="Auth" color="warning">Signup </Button> */}
+                </>}
+{    isLoggedIn &&     <Button onClick={()=>dispatch(authActions.logout())} variant="contained" sx={{margin:1, borderRadius:"10"}} LinkComponent={Link} to="Auth" color="warning">Logout </Button>}        
                </Box>
           </Toolbar>
   
